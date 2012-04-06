@@ -1,6 +1,6 @@
 This repository is a module used to print formatted output messages to the 
-bash from C++ source code. The module has several default verbosity levels
-which in order from lowest to highe;st priority are as follows:
+bash for C++ source code. The module has several default verbosity levels
+which in order from lowest to highest priority are as follows:
 
 DEBUG
 INFO
@@ -20,15 +20,16 @@ function call would set the lowest level to CRITICAL:
 log_setlevel("CRITICAL");
 
 It is up to you as the software developer to determine the priority level 
-that each message you insert into your program should have. This logging
-module is essentially a wrapper function around the stdio.h printf function
-which is well documented on the C++ site. To print output to the console, 
-you simply provide the message priority level along with the formatted
-string output that you would provide to printf. An example is shown
-below:
+for each message you insert into your program. This logging module is 
+essentially a wrapper function around the stdio.h printf function which is 
+well documented online. To print output to the console, simply provide the 
+message priority level along with the formatted string output which you would 
+provide to printf. An example is shown below:
 
 log_printf(INFO, "Hello, World!");
+
 log_printf(WARNING, "Unexpected access of cell index %d", i);
+
 log_printf(ERROR, "Index out of bounds in class %s", myclass.toString());
 
 Please feel free to use and distribute this logging module for our own codes,
