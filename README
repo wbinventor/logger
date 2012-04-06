@@ -1,0 +1,73 @@
+This repository is a module used to print formatted output messages to the 
+bash from C++ source code. The module has several default verbosity levels
+which in order from lowest to highe;st priority are as follows:
+
+DEBUG
+INFO
+NORMAL
+WARNING
+CRITICAL
+RESULT
+ERROR
+MUTE
+
+By default, the verbosity is set to NORMAL which means that any message 
+with a verbosity level greater than or equal to NORMAL will be output to the
+screen, while those with a level less than NORMAL will not be. You can change
+the verbosity level in your program at any time. For example, the following 
+function call would set the lowest level to CRITICAL:
+
+log_setlevel("CRITICAL");
+
+It is up to you as the software developer to determine the priority level 
+that each message you insert into your program should have. This logging
+module is essentially a wrapper function around the stdio.h printf function
+which is well documented on the C++ site. To print output to the console, 
+you simply provide the message priority level along with the formatted
+string output that you would provide to printf. An example is shown
+below:
+
+log_printf(INFO, "Hello, World!");
+log_printf(WARNING, "Unexpected access of cell index %d", i);
+log_printf(ERROR, "Index out of bounds in class %s", myclass.toString());
+
+Please feel free to use and distribute this logging module for our own codes,
+and contribute any extensions or improvements back into the repository!
+
+
+===============================================================================
+                         Build as a static library
+===============================================================================
+
+To compile these functions as a static library which you can then link to
+any C++ project, execute the following bash commands from within the source
+code directory:
+
+g++ -c -o log.o log.cpp
+ar -cvq liblog.a log.o
+
+That's all there is to it! You should now be ready to include and link the 
+library in any C++ source code you wish.
+
+
+===============================================================================
+                            Link to your project
+===============================================================================
+
+To link to the static library libgplot which you created above, you simply 
+need to do the following two things:
+
+1) Include the library's header file in each source file which will use the 
+function calls:
+
+#include "log.h"
+
+2) To compile source files which use the library, include the path to the 
+library in your makefile for each of the source files which use the library:
+
+-I"/{path to the directory}/logger"
+
+3) To link source files  which use the library, include the linker flag 
+"-llog" along with the path to the library in your makefile:
+
+-L"/{path to the directory}/logger"
